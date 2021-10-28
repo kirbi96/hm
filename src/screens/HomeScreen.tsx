@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Button, FlatList, StyleSheet, View} from 'react-native';
 import {useActions, useTypedSelector} from '../base/hooks';
 import Navigation from '../base/Navigation';
@@ -13,8 +13,8 @@ export const HomeScreen = () => {
   const {info} = useTypedSelector(state => state.info);
   const {fetchInfo} = useActions();
 
-  const handleNavigateToDetailScreen = (params: IInfo) => {
-    Navigation.navigate(screens.DETAIL, params);
+  const handleNavigateToDetailScreen = (info: IInfo) => {
+    Navigation.navigate(screens.DETAIL, {info});
   };
 
   const getInfo = () => {
@@ -37,21 +37,23 @@ export const HomeScreen = () => {
     }, []),
   );
 
-  const renderItem = ({item, index}: any) => {
-    return (
-      <HomeCard
-        key={index}
-        id={item.id}
-        actor={item.actor}
-        created_at={item.created_at}
-        payload={item.payload}
-        public={item.public}
-        repo={item.repo}
-        type={item.type}
-        onPress={() => handleNavigateToDetailScreen(item)}
-      />
-    );
-  };
+  const renderItem = useCallback(
+    ({item}) => {
+      return (
+        <HomeCard
+          id={item.id}
+          actor={item.actor}
+          created_at={item.created_at}
+          payload={item.payload}
+          public={item.public}
+          repo={item.repo}
+          type={item.type}
+          onPress={() => handleNavigateToDetailScreen(item)}
+        />
+      );
+    },
+    [info],
+  );
 
   return (
     <View style={styles.container}>
@@ -62,6 +64,7 @@ export const HomeScreen = () => {
       />
 
       <FlatList
+        initialNumToRender={5}
         showsVerticalScrollIndicator={false}
         data={info}
         renderItem={renderItem}

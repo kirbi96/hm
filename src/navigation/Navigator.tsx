@@ -5,8 +5,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Navigation from '../base/Navigation';
 import {Colors} from '../styles/Colors';
 import {TabsStack} from './tabs/TabsStack';
+import {IInfo} from '../types/info';
 
-export type RootStackParamList = {};
+export type RootStackParamList = {
+  DETAIL_IN: {info: IInfo};
+};
 
 const Stack = createStackNavigator<RootStackParamList>();
 

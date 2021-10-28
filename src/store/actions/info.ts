@@ -9,7 +9,10 @@ export const fetchInfo = () => {
 
       const {data} = await API.info.getInfo();
 
-      dispatch({type: InfoActionTypes.FETCH_INFO_SUCCESS, payload: data});
+      dispatch({
+        type: InfoActionTypes.FETCH_INFO_SUCCESS,
+        payload: data.slice(0, 25),
+      });
     } catch (e) {
       dispatch({
         type: InfoActionTypes.FETCH_INFO_ERROR,
