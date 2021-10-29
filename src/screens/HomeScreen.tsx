@@ -28,7 +28,7 @@ export const HomeScreen = () => {
   };
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       getInfo();
       const interval = setInterval(() => {
         getInfo();
@@ -38,7 +38,7 @@ export const HomeScreen = () => {
   );
 
   const renderItem = useCallback(
-    ({item}) => {
+    ({item}: {item: IInfo}) => {
       return (
         <HomeCard
           id={item.id}
@@ -57,18 +57,14 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Button
-        disabled={!hasReload}
-        onPress={() => getInfo()}
-        title={'Reload'}
-      />
+      <Button disabled={!hasReload} onPress={getInfo} title={'Reload'} />
 
       <FlatList
         initialNumToRender={5}
         showsVerticalScrollIndicator={false}
         data={info}
         renderItem={renderItem}
-        keyExtractor={i => i.id.toString()}
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );

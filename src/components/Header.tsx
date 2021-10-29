@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => handleNavigateToBack()}>
+      <TouchableOpacity onPress={handleNavigateToBack}>
         <Text>Go back</Text>
       </TouchableOpacity>
     </View>

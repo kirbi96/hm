@@ -1,5 +1,10 @@
 import React from 'react';
-import {ActivityIndicator, ActivityIndicatorProps, View} from 'react-native';
+import {
+  ActivityIndicator,
+  ActivityIndicatorProps,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {Colors} from '../styles/Colors';
 
 export const Loader = (props: ActivityIndicatorProps) => {
@@ -8,8 +13,16 @@ export const Loader = (props: ActivityIndicatorProps) => {
 
 export const LoaderFlex = (props: ActivityIndicatorProps) => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.loaderFlexContainer}>
       <ActivityIndicator size={'large'} color={Colors.primary} {...props} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  loaderFlexContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

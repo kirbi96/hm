@@ -13,7 +13,7 @@ export const fetchInfo = () => {
         type: InfoActionTypes.FETCH_INFO_SUCCESS,
         payload: data.slice(0, 25),
       });
-    } catch (e) {
+    } catch (err) {
       dispatch({
         type: InfoActionTypes.FETCH_INFO_ERROR,
         payload: 'Произошла ошибка',

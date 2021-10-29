@@ -3,8 +3,6 @@ import axios, {AxiosError} from 'axios';
 import {appConfig} from '../../appConfig';
 import infoAPI from './info';
 
-// import Notification from '../utils/NotificationUtil';
-
 export interface ApiResponse<T> {
   status: number;
   data: T;
@@ -34,10 +32,6 @@ axios.interceptors.response.use(
       console.log('ResponseErrorData', error.response?.data);
     }
 
-    // Notification.showError(
-    //   error.response?.data?.message || 'Неизвестная ошибка',
-    // );
-
     switch (error.response?.status) {
       case 401: {
         // console.log('Ошибка - 401');
@@ -59,14 +53,6 @@ axios.interceptors.response.use(
 
 class APIService {
   info = infoAPI;
-
-  // setToken = (token: string) => {
-  //   axios.defaults.headers.Authorization = 'Bearer ' + token;
-  // };
-  //
-  // clearToken = () => {
-  //   axios.defaults.headers.Authorization = null;
-  // };
 }
 
 const API = new APIService();

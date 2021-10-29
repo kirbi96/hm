@@ -10,7 +10,7 @@ interface FetchInfoAction {
 
 interface FetchInfoActionSuccess {
   type: InfoActionTypes.FETCH_INFO_SUCCESS;
-  payload: any[];
+  payload: IInfo[];
 }
 
 interface FetchInfoActionError {

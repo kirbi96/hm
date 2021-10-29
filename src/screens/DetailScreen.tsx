@@ -5,7 +5,8 @@ import {RouteProp, useRoute} from '@react-navigation/core';
 import {RootStackParamList} from '../navigation/Navigator';
 
 export const DetailScreen = () => {
-  const {info} = useRoute<RouteProp<RootStackParamList, 'DETAIL_IN'>>().params;
+  const {id, type, actor, created_at} =
+    useRoute<RouteProp<RootStackParamList, 'DETAIL_IN'>>().params.info;
 
   return (
     <View style={styles.container}>
@@ -13,18 +14,15 @@ export const DetailScreen = () => {
 
       <View style={styles.infoContainer}>
         <View>
-          <Text>ID: {info?.id}</Text>
-          <Text>type: {info?.type}</Text>
-          <Text>created: {info?.created_at}</Text>
+          <Text>ID: {id}</Text>
+          <Text>type: {type}</Text>
+          <Text>created: {created_at}</Text>
         </View>
 
         <View style={styles.userContainer}>
-          <Image
-            style={styles.avatar}
-            source={{uri: info?.actor?.avatar_url}}
-          />
+          <Image style={styles.avatar} source={{uri: actor?.avatar_url}} />
 
-          <Text style={styles.loginText}>{info?.actor?.login}</Text>
+          <Text style={styles.loginText}>{actor?.login}</Text>
         </View>
       </View>
     </View>
@@ -52,11 +50,11 @@ const styles = StyleSheet.create({
   avatar: {
     width: 120,
     height: 120,
-    borderRadius: 120 / 2,
+    borderRadius: 60,
   },
   loginText: {
     marginTop: 16,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: 'bold',
   },
 });

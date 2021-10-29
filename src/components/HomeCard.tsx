@@ -7,15 +7,15 @@ interface IHomeCard extends IInfo {
   onPress: () => void;
 }
 
-export const HomeCard = (props: IHomeCard) => {
+export const HomeCard = ({actor, created_at, type, onPress}: IHomeCard) => {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.userContainer}>
-        <Image style={styles.avatar} source={{uri: props.actor.avatar_url}} />
-        <Text>{props.actor.login}</Text>
+        <Image style={styles.avatar} source={{uri: actor.avatar_url}} />
+        <Text>{actor.login}</Text>
       </View>
-      <Text style={styles.typeText}>Type: {props.type}</Text>
-      <Text>Created: {props.created_at}</Text>
+      <Text style={styles.typeText}>Type: {type}</Text>
+      <Text>Created: {created_at}</Text>
     </TouchableOpacity>
   );
 };
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 40,
     height: 40,
-    borderRadius: 40 / 2,
+    borderRadius: 20,
     marginRight: 16,
   },
   userContainer: {
