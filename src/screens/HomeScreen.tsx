@@ -39,15 +39,16 @@ export const HomeScreen = () => {
 
   const renderItem = useCallback(
     ({item}: {item: IInfo}) => {
+      const {id, actor, created_at, payload, public: pub, repo, type} = item;
       return (
         <HomeCard
-          id={item.id}
-          actor={item.actor}
-          created_at={item.created_at}
-          payload={item.payload}
-          public={item.public}
-          repo={item.repo}
-          type={item.type}
+          id={id}
+          actor={actor}
+          created_at={created_at}
+          payload={payload}
+          public={pub}
+          repo={repo}
+          type={type}
           onPress={() => handleNavigateToDetailScreen(item)}
         />
       );
